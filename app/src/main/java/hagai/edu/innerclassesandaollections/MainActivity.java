@@ -12,6 +12,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     FloatingActionButton fab;
     Toolbar toolbar;
@@ -26,6 +31,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
         fab.setOnClickListener(this);
+
+        String[]arr = {"a","b","c"};
+        String s  = Arrays.toString(arr);
+        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
+
+        List <String> strings = Arrays.asList(arr);
+
+        String[] lines = new String[10];
+        Arrays.fill(lines, "*");
+
+        List<String> l = new LinkedList<>();
+        //Queue<String> k = new LinkedList<>();
+
 
 
 
