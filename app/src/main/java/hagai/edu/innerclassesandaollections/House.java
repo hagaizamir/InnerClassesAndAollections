@@ -11,48 +11,62 @@ import java.util.ArrayList;
 //class in a class
 
 
-private class House {
+public class House {
     private String address;
 
+    private ArrayList<Room> rooms = new ArrayList<>();
+    //No room without a house.
+    //A Room Always knows the house it's in. (IE A Reference).
 
-    //No room without house
-    //a room always knows the house it's in.(IE a reference)
-
-    public static class Builder {
-        private int room;
-        private int walls;
-
-        public Builder (int qt){
-            this.room = qt;
-            this.walls = qt;
-        }
-
+    //No Constructor: Must have a factory or builder
+    private House() {
+        //new Room(10, 10);
     }
 
-    public House(String address, int numRooms) {
-        this.address = address;
-        for (int i = 0; i <numRooms ; i++) {
-            rooms.add(new Room(10,10));
+    public static class Builder{
+        private House h;
 
+        public Builder() {
+            this.h = new House(); //empty house, no rooms, no address.
+        }
+
+        public Builder addRoom(double width, double height){
+            Room r = h.new Room(width, height);
+            h.rooms.add(r);
+            return this;
+        }
+
+        public Builder setAddress(String address){
+            h.address = address;
+            return this;
+        }
+
+        public House build(){
+            return h;
         }
     }
 
     public class Room{
-        public Room(double width, double height) {
+        private double width;
+        private double height;
 
+        public Room(double width, double height) {
             this.width = width;
             this.height = height;
         }
 
-        private House mHouse = House.this;
-        private  double width;
-        private  double height;
-        @Override
         public String toString() {
-            return "Room: width:" + width+
-                    "Height:" + height+
-                    "Address:" + address;
-
+            return "Room: Width: " + width +
+                    " Height: " + height +
+                    " Address: " + address;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "address='" + address + '\'' +
+                ", rooms=" + rooms +
+                '}';
     }
 }
