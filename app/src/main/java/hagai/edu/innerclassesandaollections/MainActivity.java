@@ -14,12 +14,13 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     FloatingActionButton fab;
+    Toolbar toolbar;
     String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -74,6 +75,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 setAddress("Ehad haam").build();
 
         Toast.makeText(this, newHouse.toString(), Toast.LENGTH_SHORT).show();
+
+        class  MyFirstClickListener implements  View.OnClickListener{
+            final  int x = 10;
+
+            //inner class inside a method
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "First" , Toast.LENGTH_SHORT).show();
+
+            }
+        }
+        class  MySecondClickListener implements  View.OnClickListener{
+
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Second" , Toast.LENGTH_SHORT).show();
+
+            }
+
+        }
+        fab.setOnClickListener(new MyFirstClickListener());
+        toolbar.setOnClickListener(new MySecondClickListener());
+
+
     }
 
 
