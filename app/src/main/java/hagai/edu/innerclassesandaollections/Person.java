@@ -5,15 +5,12 @@ package hagai.edu.innerclassesandaollections;
  */
 
 public class Person {
-    private  String firstName;
-    private  String id;
+    private String firstName;
+    private String id;
 
-    @Override
-    public String toString() {
-        //debuging
-        //do not over formatting
-        return firstName;
-    }
+    //cache
+    //TODO: SETTERS MUST SET THE HASH TO ZERO:
+    int hash = 0;
 
     @Override
     public boolean equals(Object o) {
@@ -22,18 +19,33 @@ public class Person {
 
         Person person = (Person) o;
 
+        if (firstName != null ? !firstName.equals(person.firstName) : person.firstName != null)
+            return false;
         return id != null ? id.equals(person.id) : person.id == null;
 
     }
 
-    int hash = 0;
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        if (hash == 0) {
+            int result = firstName != null ? firstName.hashCode() : 0;
+            result = 31 * result + (id != null ? id.hashCode() : 0);
+            hash = result;
+        }
+        return hash;
     }
+
+    @Override
+    public String toString() {
+        //debugging.
+        //do not over formating.
+        return firstName;
+    }
+
 
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
+        //
     }
 }

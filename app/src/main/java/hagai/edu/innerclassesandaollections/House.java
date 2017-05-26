@@ -8,10 +8,8 @@ import java.util.ArrayList;
  * Created by Hagai Zamir on 23-May-17.
  */
 
-//class in a class
-
-
-public class House {
+//Class in a class
+public class House  {
     private String address;
 
     private ArrayList<Room> rooms = new ArrayList<>();
@@ -22,6 +20,8 @@ public class House {
     private House() {
         //new Room(10, 10);
     }
+
+
 
     public static class Builder{
         private House h;
